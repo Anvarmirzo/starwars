@@ -1,0 +1,16 @@
+<h1>Films</h1>
+<div class="row">
+    <div class="col-sm-6 col-lg-3" *ngFor="let item of list()">
+        <mat-card class="cardWithShadow productcard overflow-hidden">
+            <mat-card-content>
+                <mat-card-title class="mat-headline-2 f-s-16 m-b-4">
+                    Title:  {{item.title}}
+                </mat-card-title>
+                <p>Director: {{ item.director }}</p>
+                <p>Opening crawl: {{ item.opening_crawl }}</p>
+                <p>Producer: {{ item.producer }}</p>
+                <p>Release date: {{ item.release_date | date : 'dd.MM.YYYY'}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<h1>Starships</h1>
+<div class="row">
+    <div class="col-sm-6 col-lg-3" *ngFor="let item of list()">
+        <mat-card class="cardWithShadow productcard overflow-hidden">
+            <mat-card-content>
+                <mat-card-title class="mat-headline-2 f-s-16 m-b-4">
+                    Name:  {{item.name}}
+                </mat-card-title>
+                <p>Crew: {{ item.crew }}</p>
+                <p>Passengers: {{ item.passengers }}</p>
+                <p>Starship class: {{ item.starship_class }}</p>
+                <p>Model: {{ item.model }}</p>
+                <p>MGLT: {{ item.MGLT }}</p>
+                <p>Cargo capacity: {{ item.cargo_capacity }}</p>
+                <p>Cost in credits: {{ item.cost_in_credits }}</p>
+                <p>Hyperdrive rating: {{ item.hyperdrive_rating }}</p>
+                <p>Consumables: {{ item.consumables }}</p>
+                <p>Max atmosphering speed: {{ item.max_atmosphering_speed }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

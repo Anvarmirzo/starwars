@@ -1,0 +1,17 @@
+<h1>People</h1>
+<div class="row">
+    <div class="col-sm-6 col-lg-3" *ngFor="let item of list()">
+        <mat-card class="cardWithShadow productcard overflow-hidden">
+            <mat-card-content>
+                <mat-card-title class="mat-headline-2 f-s-16 m-b-4">
+                    Name:  {{item.name}}
+                </mat-card-title>
+                <p>Birth year: {{ item.birth_year }}</p>
+                <p>Gender: {{ item.gender }}</p>
+                <p>Eye color: {{ item.eye_color }}</p>
+                <p>Height: {{ item.height }}</p>
+                <p>Mass: {{ item.mass }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

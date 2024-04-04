@@ -1,0 +1,19 @@
+<h1>Species</h1>
+<div class="row">
+    <div class="col-sm-6 col-lg-3" *ngFor="let item of list()">
+        <mat-card class="cardWithShadow productcard overflow-hidden">
+            <mat-card-content>
+                <mat-card-title class="mat-headline-2 f-s-16 m-b-4">
+                    Name:  {{item.name}}
+                </mat-card-title>
+                <p>Classification: {{ item.classification }}</p>
+                <p>Average height: {{ item.average_height }}</p>
+                <p>Average lifespan: {{ item.average_lifespan }}</p>
+                <p>Designation: {{ item.designation }}</p>
+                <p>Eye colors: {{ item.eye_colors }}</p>
+                <p>Hair colors: {{ item.hair_colors }}</p>
+                <p>Skin colors: {{ item.skin_colors }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
