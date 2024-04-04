@@ -3,7 +3,7 @@ import {
     Output,
     EventEmitter,
     Input,
-    ViewEncapsulation,
+    ViewEncapsulation, inject,
 } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Router, RouterLink} from '@angular/router';
@@ -33,11 +33,9 @@ export class HeaderComponent {
     @Output() toggleMobileNav = new EventEmitter<void>();
     @Output() toggleMobileFilterNav = new EventEmitter<void>();
     @Output() toggleCollapsed = new EventEmitter<void>();
-    user=this.authService.getUser;
-    showFiller = false;
-
-    constructor(public dialog: MatDialog, private authService: AuthService, private router: Router) {
-    }
+    authService = inject(AuthService)
+    router = inject(Router)
+    user = this.authService.getUser;
 
     onLogout() {
         return this.authService.logOut().then(() => this.router.navigate(['auth', 'login']))

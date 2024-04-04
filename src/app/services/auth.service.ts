@@ -1,7 +1,8 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, tap} from 'rxjs';
 import {IUser} from '../models/user';
+import {ApiService} from './api.service';
 
 const storage = localStorage;
 
@@ -13,9 +14,7 @@ export class AuthService {
     private user$ = new BehaviorSubject<IUser | null>(
         storage.getItem('axcrm-user') ? (JSON.parse(storage.getItem('user') as string) as IUser) : null,
     );
-
-    constructor(private http: HttpClient) {
-    }
+    http = inject(HttpClient)
 
     login({username, password}: { username: string; password: string }) {
         return this.http.post<IUser>(`${this.URL}/login`, {username, password})

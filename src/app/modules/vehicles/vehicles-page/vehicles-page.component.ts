@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ApiService} from '../../../services/api.service';
 import {signal} from '@angular/core';
 import {IVehicles} from '../../../models/vehicles';
@@ -13,9 +13,7 @@ export class VehiclesPageComponent implements OnInit {
     list = signal<IVehicles[]>([])
     isLoading = signal(true)
     next = signal<string | null>(null)
-
-    constructor(private api: ApiService) {
-    }
+    api = inject(ApiService)
 
     ngOnInit() {
         this.getVehicles()

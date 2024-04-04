@@ -1,7 +1,6 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component, inject, Input, OnChanges} from '@angular/core';
 import {NavItem} from './nav-item';
 import {Router} from '@angular/router';
-import {NavService} from '../../../../services/nav.service';
 import {NgClass, NgIf} from '@angular/common';
 import {IconsModule} from '../../../../modules/icons/icons.module';
 import {MaterialModule} from '../../../../modules/material/material.module';
@@ -18,21 +17,15 @@ import {MaterialModule} from '../../../../modules/material/material.module';
     ],
     standalone: true
 })
-export class AppNavItemComponent implements OnChanges {
+export class AppNavItemComponent {
     @Input() item: NavItem | any;
     @Input() depth: any;
+    router = inject(Router)
 
-    constructor(public navService: NavService, public router: Router) {
+    constructor() {
         if (this.depth === undefined) {
             this.depth = 0;
         }
-    }
-
-    ngOnChanges() {
-        this.navService.currentUrl.subscribe((url: string) => {
-            if (this.item.route && url) {
-            }
-        });
     }
 
     onItemSelected(item: NavItem) {

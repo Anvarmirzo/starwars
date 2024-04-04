@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {navItems} from './sidebar-data';
-import {NavService} from '../../../services/nav.service';
 import {BrandingComponent} from './branding.component';
 import {AppNavItemComponent} from './nav-item/nav-item.component';
 import {NgForOf} from '@angular/common';
@@ -21,9 +20,6 @@ import {MaterialModule} from '../../../modules/material/material.module';
 })
 export class SidebarComponent implements OnInit {
     navItems = navItems;
-
-    constructor(public navService: NavService) {
-    }
 
     ngOnInit(): void {
     }

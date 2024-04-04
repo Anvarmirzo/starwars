@@ -17,7 +17,4 @@ import {Component} from '@angular/core';
     `,
     standalone: true
 })
-export class BrandingComponent {
-    constructor() {
-    }
-}
+export class BrandingComponent {}

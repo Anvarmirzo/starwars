@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, inject, OnInit} from '@angular/core';
 import {ApiService} from '../../../services/api.service';
 import {IPeople} from '../../../models/people';
 import {signal} from '@angular/core';
@@ -13,9 +13,7 @@ export class PeoplePageComponent implements OnInit {
     isLoading = signal(true)
     list = signal<IPeople[]>([])
     next = signal<string | null>(null)
-
-    constructor(private api: ApiService) {
-    }
+    api = inject(ApiService)
 
     ngOnInit() {
         this.getPeople();

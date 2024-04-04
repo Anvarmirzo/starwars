@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core'
+import {inject, Injectable} from '@angular/core'
 import {HttpClient} from '@angular/common/http'
 import {IPeople} from '../models/people'
 import {IResponse} from '../models'
@@ -13,9 +13,7 @@ import {IFilms} from '../models/films'
 })
 export class ApiService {
     private URL = 'https://swapi.dev/api'
-
-    constructor(private http: HttpClient) {
-    }
+    http = inject(HttpClient)
 
     getPeople(next?: string | null) {
         return this.http.get<IResponse<IPeople>>(next ?? `${this.URL}/people`)
