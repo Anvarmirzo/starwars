@@ -1,19 +1,25 @@
-<div class="d-flex align-items-center gap-16">
-    <h1>Films</h1>
-    <img *ngIf="isLoading()" src="assets/images/svgs/loading.svg" alt="Loading...">
-</div>
-<div class="row">
-    <div class="col-sm-6 col-lg-3" *ngFor="let item of list()">
-        <mat-card class="cardWithShadow productcard overflow-hidden">
-            <mat-card-content>
-                <mat-card-title class="mat-headline-2 f-s-16 m-b-4">
-                    Title:  {{item.title}}
-                </mat-card-title>
-                <p>Director: {{ item.director }}</p>
-                <p>Opening crawl: {{ item.opening_crawl }}</p>
-                <p>Producer: {{ item.producer }}</p>
-                <p>Release date: {{ item.release_date | date : 'dd.MM.YYYY'}}</p>
-            </mat-card-content>
-        </mat-card>
+<div
+        appInfiniteScroll
+        (callback)="getFilms()"
+        [needToTrigger]="!!list().length && !this.isLoading() && !!next()"
+>
+    <div class="d-flex align-items-center gap-16">
+        <h1>Films</h1>
+        <img *ngIf="isLoading()" src="assets/images/svgs/loading.svg" alt="Loading...">
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-lg-3" *ngFor="let item of list()">
+            <mat-card class="cardWithShadow productcard overflow-hidden">
+                <mat-card-content>
+                    <mat-card-title class="mat-headline-2 f-s-16 m-b-4">
+                        Title:  {{item.title}}
+                    </mat-card-title>
+                    <p>Director: {{ item.director }}</p>
+                    <p>Opening crawl: {{ item.opening_crawl }}</p>
+                    <p>Producer: {{ item.producer }}</p>
+                    <p>Release date: {{ item.release_date | date : 'dd.MM.YYYY'}}</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>

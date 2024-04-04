@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {IPeople} from '../models/people';
-import {IResponse} from '../models';
-import {IPlanets} from '../models/planets';
-import {ISpecies} from '../models/species';
-import {IStarships} from '../models/starships';
-import {IVehicles} from '../models/vehicles';
-import {IFilms} from '../models/films';
+import {Injectable} from '@angular/core'
+import {HttpClient} from '@angular/common/http'
+import {IPeople} from '../models/people'
+import {IResponse} from '../models'
+import {IPlanets} from '../models/planets'
+import {ISpecies} from '../models/species'
+import {IStarships} from '../models/starships'
+import {IVehicles} from '../models/vehicles'
+import {IFilms} from '../models/films'
 
 @Injectable({
     providedIn: 'root'
@@ -17,27 +17,27 @@ export class ApiService {
     constructor(private http: HttpClient) {
     }
 
-    getPeople() {
-        return this.http.get<IResponse<IPeople>>(`${this.URL}/people`);
+    getPeople(next?: string | null) {
+        return this.http.get<IResponse<IPeople>>(next ?? `${this.URL}/people`)
     }
 
-    getPlanets() {
-        return this.http.get<IResponse<IPlanets>>(`${this.URL}/planets`);
+    getPlanets(next?: string | null) {
+        return this.http.get<IResponse<IPlanets>>(next ?? `${this.URL}/planets`)
     }
 
-    getFilms() {
-        return this.http.get<IResponse<IFilms>>(`${this.URL}/films`);
+    getFilms(next?: string | null) {
+        return this.http.get<IResponse<IFilms>>(next ?? `${this.URL}/films`)
     }
 
-    getStarships() {
-        return this.http.get<IResponse<IStarships>>(`${this.URL}/starships`);
+    getStarships(next?: string | null) {
+        return this.http.get<IResponse<IStarships>>(next ?? `${this.URL}/starships`)
     }
 
-    getVehicles() {
-        return this.http.get<IResponse<IVehicles>>(`${this.URL}/vehicles`);
+    getVehicles(next?: string | null) {
+        return this.http.get<IResponse<IVehicles>>(next ?? `${this.URL}/vehicles`)
     }
 
-    getSpecies() {
-        return this.http.get<IResponse<ISpecies>>(`${this.URL}/species`);
+    getSpecies(next?: string | null) {
+        return this.http.get<IResponse<ISpecies>>(next ?? `${this.URL}/species`)
     }
 }

@@ -12,16 +12,22 @@ import {IVehicles} from '../../../models/vehicles';
 export class VehiclesPageComponent implements OnInit {
     list = signal<IVehicles[]>([])
     isLoading = signal(true)
+    next = signal<string | null>(null)
 
     constructor(private api: ApiService) {
     }
 
     ngOnInit() {
+        this.getVehicles()
+    }
+
+    getVehicles() {
+        this.isLoading.set(true)
         this.api.getVehicles().subscribe(next => {
-            this.list.set(next.results)
+            this.next.set(next.next)
+            this.list.set([...this.list(), ...next.results])
             this.isLoading.set(false)
         })
     }
-
 
 }

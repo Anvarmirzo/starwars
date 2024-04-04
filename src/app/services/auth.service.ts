@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {IResponse} from '../models';
-import {ISpecies} from '../models/species';
 import {BehaviorSubject, tap} from 'rxjs';
 import {IUser} from '../models/user';
 
@@ -29,14 +27,9 @@ export class AuthService {
     }
 
     fetchUser() {
-        return this.http.get<IUser>(`${this.URL}/me`, {
-            headers: {
-                'Authorization': `Bearer ${this.token}`,
-            },
-        })
+        return this.http.get<IUser>(`${this.URL}/me`)
             .pipe(tap(res => {
                 storage.setItem('user', JSON.stringify(res));
-                storage.setItem('token', JSON.stringify(res.token))
                 this.user$.next(res)
             }));
     }
@@ -44,11 +37,6 @@ export class AuthService {
     refreshSession() {
         return this.http.post<IUser>(`${this.URL}/refresh`, {
             expiresInMins: 30, // optional, defaults to 60
-        }, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.token}`,
-            },
         })
             .pipe(tap(res => {
                 storage.setItem('user', JSON.stringify(res));

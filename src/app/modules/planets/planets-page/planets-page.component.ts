@@ -12,13 +12,20 @@ import {IPlanets} from '../../../models/planets';
 export class PlanetsPageComponent implements OnInit {
     list = signal<IPlanets[]>([])
     isLoading = signal(true)
+    next = signal<string | null>(null)
 
     constructor(private api: ApiService) {
     }
 
     ngOnInit() {
-        this.api.getPlanets().subscribe(next => {
-            this.list.set(next.results)
+        this.getPlanets()
+    }
+
+    getPlanets() {
+        this.isLoading.set(true)
+        this.api.getPlanets(this.next()).subscribe(next => {
+            this.next.set(next.next)
+            this.list.set([...this.list(), ...next.results])
             this.isLoading.set(false)
         })
     }

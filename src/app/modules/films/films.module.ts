@@ -5,18 +5,20 @@ import {RouterModule} from '@angular/router';
 import {FilmsRoutes} from './films.routing.module';
 import {IconsModule} from '../icons/icons.module';
 import {MaterialModule} from '../material/material.module';
+import {InfiniteScrollDirective} from '../../directives/infinite-scroll.directive';
 
 
 @NgModule({
   declarations: [
     FilmsPageComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(FilmsRoutes),
-    MaterialModule,
-    IconsModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(FilmsRoutes),
+        MaterialModule,
+        IconsModule,
+        InfiniteScrollDirective
+    ]
 })
 export class FilmsModule {
 }

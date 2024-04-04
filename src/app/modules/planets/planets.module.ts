@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {PlanetsRoutes} from './planets.routing.module';
 import {IconsModule} from '../icons/icons.module';
 import {MaterialModule} from '../material/material.module';
+import {InfiniteScrollDirective} from '../../directives/infinite-scroll.directive';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {MaterialModule} from '../material/material.module';
         CommonModule,
         RouterModule.forChild(PlanetsRoutes),
         MaterialModule,
-        IconsModule
+        IconsModule,
+        InfiniteScrollDirective
     ]
 })
 export class PlanetsModule {

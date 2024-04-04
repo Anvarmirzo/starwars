@@ -11,17 +11,23 @@ import {ISpecies} from '../../../models/species';
 })
 export class SpeciesPageComponent implements OnInit {
     list = signal<ISpecies[]>([])
-    isLoading = signal(true)
+    isLoading = signal(true);
+    next = signal<string | null>(null)
 
     constructor(private api: ApiService) {
     }
 
     ngOnInit() {
+        this.getSpecies()
+    }
+
+    getSpecies() {
+        this.isLoading.set(true)
         this.api.getSpecies().subscribe(next => {
-            this.list.set(next.results)
+            this.next.set(next.next)
+            this.list.set([...this.list(), ...next.results])
             this.isLoading.set(false)
         })
     }
-
 
 }

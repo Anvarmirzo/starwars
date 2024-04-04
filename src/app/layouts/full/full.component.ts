@@ -27,7 +27,7 @@ const MONITOR_VIEW = 'screen and (min-width: 1024px)';
 export class FullComponent implements OnInit {
 
     @ViewChild('leftsidenav')
-     sidenav?: MatSidenav;
+    sidenav?: MatSidenav;
 
     //get options from service
     private layoutChangesSubscription = Subscription.EMPTY;
@@ -40,7 +40,7 @@ export class FullComponent implements OnInit {
         return this.isMobileScreen;
     }
 
-    constructor(private breakpointObserver: BreakpointObserver, private authService:AuthService) {
+    constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) {
         this.htmlElement = document.querySelector('html')!;
         this.layoutChangesSubscription = this.breakpointObserver
             .observe([MOBILE_VIEW, TABLET_VIEW, MONITOR_VIEW])
@@ -54,7 +54,7 @@ export class FullComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.authService.refreshSession().subscribe()
+        this.authService.fetchUser().subscribe()
     }
 
     ngOnDestroy() {

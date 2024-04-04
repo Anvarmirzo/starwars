@@ -5,3 +5,9 @@
 		height: 100%;
 	}
 }
+
+.contentWrapper{
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}

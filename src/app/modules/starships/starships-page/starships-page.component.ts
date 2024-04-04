@@ -12,16 +12,23 @@ import {IStarships} from '../../../models/starships';
 export class StarshipsPageComponent implements OnInit {
     list = signal<IStarships[]>([])
     isLoading = signal(true)
+    next = signal<string | null>(null)
 
     constructor(private api: ApiService) {
     }
 
     ngOnInit() {
-        this.api.getStarships().subscribe(next => {
-            this.list.set(next.results)
-            this.isLoading.set(false)
-        })
+        this.getStarships()
     }
 
+    getStarships() {
+        this.isLoading.set(true)
+        this.api.getStarships().subscribe(next => {
+            this.next.set(next.next)
+            this.list.set([...this.list(), ...next.results])
+            this.isLoading.set(false)
+
+        })
+    }
 
 }
