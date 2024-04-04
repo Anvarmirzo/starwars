@@ -5,6 +5,7 @@ import {MatSidenav, MatSidenavContainer, MatSidenavModule} from '@angular/materi
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {HeaderComponent} from './header/header.component';
 import {RouterOutlet} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 const MOBILE_VIEW = 'screen and (max-width: 768px)';
 const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)';
@@ -39,7 +40,7 @@ export class FullComponent implements OnInit {
         return this.isMobileScreen;
     }
 
-    constructor(private breakpointObserver: BreakpointObserver) {
+    constructor(private breakpointObserver: BreakpointObserver, private authService:AuthService) {
         this.htmlElement = document.querySelector('html')!;
         this.layoutChangesSubscription = this.breakpointObserver
             .observe([MOBILE_VIEW, TABLET_VIEW, MONITOR_VIEW])
@@ -53,6 +54,7 @@ export class FullComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.authService.refreshSession().subscribe()
     }
 
     ngOnDestroy() {

@@ -1,7 +1,13 @@
 import {Routes} from '@angular/router';
 import {FullComponent} from './layouts/full/full.component';
+import {AuthGuard} from './guards/auth.guard';
 
 export const routes: Routes = [
+    {
+        path: 'auth',
+        loadChildren: () =>
+            import('./modules/authentication/authentication.module').then((m) => m.AuthenticationModule)
+    },
     {
         path: '',
         pathMatch: 'full',
@@ -11,6 +17,7 @@ export const routes: Routes = [
     {
         path: '',
         component: FullComponent,
+        canActivate: [AuthGuard],
         children: [
             {
                 path: 'people',

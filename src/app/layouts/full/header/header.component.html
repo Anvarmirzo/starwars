@@ -10,12 +10,13 @@
     <!-- profile Dropdown -->
     <!-- --------------------------------------------------------------- -->
     <button
+            *ngIf="user | async as user"
             mat-icon-button
             [matMenuTriggerFor]="profilemenu"
             aria-label="Notifications"
     >
         <img
-                src="/assets/images/profile/user-1.jpg"
+                [src]="user.image??''"
                 class="rounded-circle object-cover"
                 width="35"
         />
@@ -50,13 +51,14 @@
         </button>
 
         <div class="p-x-12 m-t-12">
-            <a
-                    [routerLink]="['/authentication/login']"
+            <button
+                    (click)="onLogout()"
                     mat-stroked-button
                     color="primary"
                     class="w-100"
-            >Logout</a
             >
+                Logout
+            </button>
         </div>
     </mat-menu>
 </mat-toolbar>
