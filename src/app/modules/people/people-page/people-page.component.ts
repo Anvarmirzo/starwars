@@ -10,6 +10,7 @@ import {signal} from '@angular/core';
     styleUrls: ['./people-page.component.scss']
 })
 export class PeoplePageComponent implements OnInit {
+    isLoading = signal(true)
     list = signal<IPeople[]>([])
 
     constructor(private api: ApiService) {
@@ -18,6 +19,7 @@ export class PeoplePageComponent implements OnInit {
     ngOnInit() {
         this.api.getPeople().subscribe(next => {
             this.list.set(next.results)
+            this.isLoading.set(false)
         })
     }
 

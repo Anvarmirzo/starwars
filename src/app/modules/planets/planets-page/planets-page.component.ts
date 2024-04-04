@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../../../services/api.service';
-import {IPeople} from '../../../models/people';
 import {signal} from '@angular/core';
 import {IPlanets} from '../../../models/planets';
 
@@ -12,6 +11,7 @@ import {IPlanets} from '../../../models/planets';
 })
 export class PlanetsPageComponent implements OnInit {
     list = signal<IPlanets[]>([])
+    isLoading = signal(true)
 
     constructor(private api: ApiService) {
     }
@@ -19,6 +19,7 @@ export class PlanetsPageComponent implements OnInit {
     ngOnInit() {
         this.api.getPlanets().subscribe(next => {
             this.list.set(next.results)
+            this.isLoading.set(false)
         })
     }
 }

@@ -11,6 +11,7 @@ import {IFilms} from '../../../models/films';
 })
 export class FilmsPageComponent implements OnInit {
     list = signal<IFilms[]>([])
+    isLoading = signal(true)
 
     constructor(private api: ApiService) {
     }
@@ -18,6 +19,7 @@ export class FilmsPageComponent implements OnInit {
     ngOnInit() {
         this.api.getFilms().subscribe(next => {
             this.list.set(next.results)
+            this.isLoading.set(false)
         })
     }
 
