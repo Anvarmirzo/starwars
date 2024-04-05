@@ -2,12 +2,14 @@ import {Component, HostListener, inject, OnInit} from '@angular/core';
 import {ApiService} from '../../../services/api.service';
 import {IPeople} from '../../../models/people';
 import {signal} from '@angular/core';
+import {listAnimation} from '../../../animations/list-animation';
 
 
 @Component({
     selector: 'app-people-page',
     templateUrl: './people-page.component.html',
-    styleUrls: ['./people-page.component.scss']
+    styleUrls: ['./people-page.component.scss'],
+    animations: [listAnimation]
 })
 export class PeoplePageComponent implements OnInit {
     isLoading = signal(true)

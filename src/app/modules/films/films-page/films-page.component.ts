@@ -2,12 +2,14 @@ import {Component, inject, OnInit} from '@angular/core';
 import {ApiService} from '../../../services/api.service';
 import {signal} from '@angular/core';
 import {IFilms} from '../../../models/films';
+import {listAnimation} from '../../../animations/list-animation';
 
 
 @Component({
     selector: 'app-films-page',
     templateUrl: './films-page.component.html',
-    styleUrls: ['./films-page.component.scss']
+    styleUrls: ['./films-page.component.scss'],
+    animations: [listAnimation]
 })
 export class FilmsPageComponent implements OnInit {
     list = signal<IFilms[]>([])

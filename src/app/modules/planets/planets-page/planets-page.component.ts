@@ -2,12 +2,14 @@ import {Component, inject, OnInit} from '@angular/core';
 import {ApiService} from '../../../services/api.service';
 import {signal} from '@angular/core';
 import {IPlanets} from '../../../models/planets';
+import {listAnimation} from '../../../animations/list-animation';
 
 
 @Component({
     selector: 'app-planets-page',
     templateUrl: './planets-page.component.html',
-    styleUrls: ['./planets-page.component.scss']
+    styleUrls: ['./planets-page.component.scss'],
+    animations: [listAnimation]
 })
 export class PlanetsPageComponent implements OnInit {
     list = signal<IPlanets[]>([])

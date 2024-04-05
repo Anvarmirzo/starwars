@@ -2,12 +2,14 @@ import {Component, inject, OnInit} from '@angular/core';
 import {ApiService} from '../../../services/api.service';
 import {signal} from '@angular/core';
 import {ISpecies} from '../../../models/species';
+import {listAnimation} from '../../../animations/list-animation';
 
 
 @Component({
     selector: 'app-species-page',
     templateUrl: './species-page.component.html',
-    styleUrls: ['./species-page.component.scss']
+    styleUrls: ['./species-page.component.scss'],
+    animations: [listAnimation]
 })
 export class SpeciesPageComponent implements OnInit {
     list = signal<ISpecies[]>([])
