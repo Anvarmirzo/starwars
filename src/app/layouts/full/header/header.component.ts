@@ -4,14 +4,12 @@ import {
     EventEmitter,
     Input,
     ViewEncapsulation, inject,
-} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
-import {Router, RouterLink} from '@angular/router';
-import {IconsModule} from '../../../modules/icons/icons.module';
-import {AsyncPipe, NgIf} from '@angular/common';
-import {MaterialModule} from '../../../modules/material/material.module';
-import {AuthService} from '../../../services/auth.service';
-import {async} from 'rxjs';
+} from '@angular/core'
+import {Router, RouterLink} from '@angular/router'
+import {IconsModule} from '../../../modules/icons/icons.module'
+import {AsyncPipe, NgIf} from '@angular/common'
+import {MaterialModule} from '../../../modules/material/material.module'
+import {AuthService} from '../../../services/auth.service'
 
 
 @Component({
@@ -28,14 +26,14 @@ import {async} from 'rxjs';
     standalone: true
 })
 export class HeaderComponent {
-    @Input() showToggle = true;
-    @Input() toggleChecked = false;
-    @Output() toggleMobileNav = new EventEmitter<void>();
-    @Output() toggleMobileFilterNav = new EventEmitter<void>();
-    @Output() toggleCollapsed = new EventEmitter<void>();
+    @Input() showToggle = true
+    @Input() toggleChecked = false
+    @Output() toggleMobileNav = new EventEmitter<void>()
+    @Output() toggleMobileFilterNav = new EventEmitter<void>()
+    @Output() toggleCollapsed = new EventEmitter<void>()
     authService = inject(AuthService)
     router = inject(Router)
-    user = this.authService.getUser;
+    user = this.authService.getUser
 
     onLogout() {
         return this.authService.logOut().then(() => this.router.navigate(['auth', 'login']))

@@ -1,19 +1,19 @@
-import {createReducer, on} from '@ngrx/store';
-import {eStatus, IResponse} from '../../../../models';
-import {peoplePageActions} from './people-page.actions';
-import {IPeople} from '../../../../models/people';
+import {createReducer, on} from '@ngrx/store'
+import {eStatus, IResponse} from '../../../../models'
+import {peoplePageActions} from './people-page.actions'
+import {IPeople} from '../../../../models/people'
 
 export interface IPeoplePageReducer {
     pagination: Omit<IResponse<IPeople>, 'results'> | null
     list: IPeople[]
-    status: eStatus;
+    status: eStatus
 }
 
 export const initialState: IPeoplePageReducer = {
     pagination: null,
     list: [],
     status: eStatus.Pending,
-};
+}
 
 export const peoplePageReducer = createReducer(
     initialState,
@@ -48,4 +48,4 @@ export const peoplePageReducer = createReducer(
             status: eStatus.Pending,
         }),
     ),
-);
+)

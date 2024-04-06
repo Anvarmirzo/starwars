@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {TablerIconsModule} from 'angular-tabler-icons';
-import * as TablerIcons from 'angular-tabler-icons/icons';
+import {NgModule} from '@angular/core'
+import {TablerIconsModule} from 'angular-tabler-icons'
+import * as TablerIcons from 'angular-tabler-icons/icons'
 
 
 @NgModule({

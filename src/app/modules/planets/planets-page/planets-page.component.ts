@@ -1,8 +1,8 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {listAnimation} from '../../../animations/list-animation';
-import {planetsPageSelectors} from '../store/planets-page/planets-page.selectors';
-import {Store} from '@ngrx/store';
-import {planetsPageActions} from '../store/planets-page/planets-page.actions';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core'
+import {listAnimation} from '../../../animations/list-animation'
+import {planetsPageSelectors} from '../store/planets-page/planets-page.selectors'
+import {Store} from '@ngrx/store'
+import {planetsPageActions} from '../store/planets-page/planets-page.actions'
 
 
 @Component({
@@ -29,5 +29,5 @@ export class PlanetsPageComponent implements OnInit, OnDestroy {
         this.store.dispatch(planetsPageActions.loadList())
     }
 
-    protected readonly planetsPageSelectors = planetsPageSelectors;
+    protected readonly planetsPageSelectors = planetsPageSelectors
 }

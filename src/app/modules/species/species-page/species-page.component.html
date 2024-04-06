@@ -1,7 +1,8 @@
 <div
         appInfiniteScroll
         (callback)="getSpecies()"
-        [needToTrigger]="!!list().length && !this.isLoading() && !!next()"
+        [selector]="speciesPageSelectors.selectIsListLoaded"
+        [needToTrigger]="!this.isLoading() && !!pagination()?.next"
 >
     <div class="d-flex align-items-center gap-16">
         <h1>Species</h1>

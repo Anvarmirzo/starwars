@@ -1,19 +1,19 @@
-import {createReducer, on} from '@ngrx/store';
-import {eStatus, IResponse} from '../../../../models';
-import {planetsPageActions} from './planets-page.actions';
-import {IPlanets} from '../../../../models/planets';
+import {createReducer, on} from '@ngrx/store'
+import {eStatus, IResponse} from '../../../../models'
+import {planetsPageActions} from './planets-page.actions'
+import {IPlanets} from '../../../../models/planets'
 
 export interface IPlanetsPageReducer {
     pagination: Omit<IResponse<IPlanets>, 'results'> | null
     list: IPlanets[]
-    status: eStatus;
+    status: eStatus
 }
 
 export const initialState: IPlanetsPageReducer = {
     pagination: null,
     list: [],
     status: eStatus.Pending,
-};
+}
 
 export const planetsPageReducer = createReducer(
     initialState,
@@ -48,4 +48,4 @@ export const planetsPageReducer = createReducer(
             status: eStatus.Pending,
         }),
     ),
-);
+)

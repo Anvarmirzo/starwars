@@ -1,8 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {ApiService} from '../../../services/api.service';
-import {signal} from '@angular/core';
-import {IStarships} from '../../../models/starships';
-import {listAnimation} from '../../../animations/list-animation';
+import {Component, inject, OnInit} from '@angular/core'
+import {ApiService} from '../../../services/api.service'
+import {signal} from '@angular/core'
+import {IStarships} from '../../../models/starships'
+import {listAnimation} from '../../../animations/list-animation'
 
 
 @Component({

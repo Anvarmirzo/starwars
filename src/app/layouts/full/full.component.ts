@@ -1,15 +1,15 @@
-import {BreakpointObserver} from '@angular/cdk/layout';
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {MatSidenav, MatSidenavContainer, MatSidenavModule} from '@angular/material/sidenav';
-import {SidebarComponent} from './sidebar/sidebar.component';
-import {HeaderComponent} from './header/header.component';
-import {RouterOutlet} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
+import {BreakpointObserver} from '@angular/cdk/layout'
+import {Component, OnInit, ViewChild} from '@angular/core'
+import {Subscription} from 'rxjs'
+import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav'
+import {SidebarComponent} from './sidebar/sidebar.component'
+import {HeaderComponent} from './header/header.component'
+import {RouterOutlet} from '@angular/router'
+import {AuthService} from '../../services/auth.service'
 
-const MOBILE_VIEW = 'screen and (max-width: 768px)';
-const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)';
-const MONITOR_VIEW = 'screen and (min-width: 1024px)';
+const MOBILE_VIEW = 'screen and (max-width: 768px)'
+const TABLET_VIEW = 'screen and (min-width: 769px) and (max-width: 1024px)'
+const MONITOR_VIEW = 'screen and (min-width: 1024px)'
 
 @Component({
     selector: 'app-full',
@@ -27,30 +27,30 @@ const MONITOR_VIEW = 'screen and (min-width: 1024px)';
 export class FullComponent implements OnInit {
 
     @ViewChild('leftsidenav')
-    sidenav?: MatSidenav;
+    sidenav?: MatSidenav
 
     //get options from service
-    private layoutChangesSubscription = Subscription.EMPTY;
-    private isMobileScreen = false;
-    private isContentWidthFixed = true;
-    private isCollapsedWidthFixed = false;
-    private htmlElement!: HTMLHtmlElement;
+    private layoutChangesSubscription = Subscription.EMPTY
+    private isMobileScreen = false
+    private isContentWidthFixed = true
+    private isCollapsedWidthFixed = false
+    private htmlElement!: HTMLHtmlElement
 
     get isOver(): boolean {
-        return this.isMobileScreen;
+        return this.isMobileScreen
     }
 
     constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) {
-        this.htmlElement = document.querySelector('html')!;
+        this.htmlElement = document.querySelector('html')!
         this.layoutChangesSubscription = this.breakpointObserver
             .observe([MOBILE_VIEW, TABLET_VIEW, MONITOR_VIEW])
             .subscribe((state) => {
                 // SidenavOpened must be reset true when layout changes
 
-                this.isMobileScreen = state.breakpoints[MOBILE_VIEW];
+                this.isMobileScreen = state.breakpoints[MOBILE_VIEW]
 
-                this.isContentWidthFixed = state.breakpoints[MONITOR_VIEW];
-            });
+                this.isContentWidthFixed = state.breakpoints[MONITOR_VIEW]
+            })
     }
 
     ngOnInit(): void {
@@ -58,18 +58,18 @@ export class FullComponent implements OnInit {
     }
 
     ngOnDestroy() {
-        this.layoutChangesSubscription.unsubscribe();
+        this.layoutChangesSubscription.unsubscribe()
     }
 
     toggleCollapsed() {
-        this.isContentWidthFixed = false;
+        this.isContentWidthFixed = false
     }
 
     onSidenavClosedStart() {
-        this.isContentWidthFixed = false;
+        this.isContentWidthFixed = false
     }
 
     onSidenavOpenedChange(isOpened: boolean) {
-        this.isCollapsedWidthFixed = !this.isOver;
+        this.isCollapsedWidthFixed = !this.isOver
     }
 }

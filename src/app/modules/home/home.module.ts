@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterModule} from '@angular/router';
-import {HomeRoutes} from './home.routing.module';
+import {NgModule} from '@angular/core'
+import {CommonModule} from '@angular/common'
+import {RouterModule} from '@angular/router'
+import {HomeRoutes} from './home.routing.module'
 
 
 @NgModule({

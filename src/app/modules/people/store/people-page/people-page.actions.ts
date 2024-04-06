@@ -1,6 +1,6 @@
-import {createActionGroup, emptyProps, props} from '@ngrx/store';
-import {IResponse} from '../../../../models';
-import {IPeople} from '../../../../models/people';
+import {createActionGroup, emptyProps, props} from '@ngrx/store'
+import {IResponse} from '../../../../models'
+import {IPeople} from '../../../../models/people'
 
 export const peoplePageActions = createActionGroup({
     source: 'People Page',
@@ -10,4 +10,4 @@ export const peoplePageActions = createActionGroup({
         'Load list failure': emptyProps(),
         'Reset page': emptyProps(),
     },
-});
+})

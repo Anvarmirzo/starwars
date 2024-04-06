@@ -1,8 +1,8 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {listAnimation} from '../../../animations/list-animation';
-import {Store} from '@ngrx/store';
-import {filmsPageActions} from '../store/films-page/films-page.actions';
-import {filmsPageSelectors} from '../store/films-page/films-page.selectors';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core'
+import {listAnimation} from '../../../animations/list-animation'
+import {Store} from '@ngrx/store'
+import {filmsPageActions} from '../store/films-page/films-page.actions'
+import {filmsPageSelectors} from '../store/films-page/films-page.selectors'
 
 
 @Component({
@@ -29,5 +29,5 @@ export class FilmsPageComponent implements OnInit, OnDestroy {
         this.store.dispatch(filmsPageActions.loadList())
     }
 
-    protected readonly filmsPageSelectors = filmsPageSelectors;
+    protected readonly filmsPageSelectors = filmsPageSelectors
 }

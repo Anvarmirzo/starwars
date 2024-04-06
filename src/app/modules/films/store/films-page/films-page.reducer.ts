@@ -1,19 +1,19 @@
-import {createReducer, on} from '@ngrx/store';
-import {eStatus, IResponse} from '../../../../models';
-import {IFilms} from '../../../../models/films';
-import {filmsPageActions} from './films-page.actions';
+import {createReducer, on} from '@ngrx/store'
+import {eStatus, IResponse} from '../../../../models'
+import {IFilms} from '../../../../models/films'
+import {filmsPageActions} from './films-page.actions'
 
 export interface IFilmsPageReducer {
     pagination: Omit<IResponse<IFilms>, 'results'> | null
     list: IFilms[]
-    status: eStatus;
+    status: eStatus
 }
 
 export const initialState: IFilmsPageReducer = {
     pagination: null,
     list: [],
     status: eStatus.Pending,
-};
+}
 
 export const filmsPageReducer = createReducer(
     initialState,
@@ -48,4 +48,4 @@ export const filmsPageReducer = createReducer(
             status: eStatus.Pending,
         }),
     ),
-);
+)

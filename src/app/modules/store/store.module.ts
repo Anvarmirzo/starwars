@@ -1,14 +1,16 @@
-import {isDevMode, NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {provideState, provideStore} from '@ngrx/store';
-import {filmsPageReducer} from '../films/store/films-page/films-page.reducer';
-import {provideEffects} from '@ngrx/effects';
-import {FilmsPageEffects} from '../films/store/films-page/films-page.effects';
-import {provideStoreDevtools} from '@ngrx/store-devtools';
-import {peoplePageReducer} from '../people/store/people-page/people-page.reducer';
-import {PeoplePageEffects} from '../people/store/people-page/people-page.effects';
-import {planetsPageReducer} from '../planets/store/planets-page/planets-page.reducer';
-import {PlanetsPageEffects} from '../planets/store/planets-page/planets-page.effects';
+import {isDevMode, NgModule} from '@angular/core'
+import {CommonModule} from '@angular/common'
+import {provideState, provideStore} from '@ngrx/store'
+import {filmsPageReducer} from '../films/store/films-page/films-page.reducer'
+import {provideEffects} from '@ngrx/effects'
+import {FilmsPageEffects} from '../films/store/films-page/films-page.effects'
+import {provideStoreDevtools} from '@ngrx/store-devtools'
+import {peoplePageReducer} from '../people/store/people-page/people-page.reducer'
+import {PeoplePageEffects} from '../people/store/people-page/people-page.effects'
+import {planetsPageReducer} from '../planets/store/planets-page/planets-page.reducer'
+import {PlanetsPageEffects} from '../planets/store/planets-page/planets-page.effects'
+import {SpeciesPageEffects} from '../species/store/species-page/species-page.effects'
+import {speciesPageReducer} from '../species/store/species-page/species-page.reducer'
 
 
 @NgModule({
@@ -17,10 +19,12 @@ import {PlanetsPageEffects} from '../planets/store/planets-page/planets-page.eff
         provideState({name: 'filmsPage', reducer: filmsPageReducer}),
         provideState({name: 'peoplePage', reducer: peoplePageReducer}),
         provideState({name: 'planetsPage', reducer: planetsPageReducer}),
+        provideState({name: 'speciesPage', reducer: speciesPageReducer}),
 
         provideEffects(FilmsPageEffects),
         provideEffects(PeoplePageEffects),
         provideEffects(PlanetsPageEffects),
+        provideEffects(SpeciesPageEffects),
 
         provideStoreDevtools({
             maxAge: 25, // Retains last 25 states

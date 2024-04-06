@@ -1,8 +1,8 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {listAnimation} from '../../../animations/list-animation';
-import {Store} from '@ngrx/store';
-import {peoplePageSelectors} from '../store/people-page/people-page.selectors';
-import {peoplePageActions} from '../store/people-page/people-page.actions';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core'
+import {listAnimation} from '../../../animations/list-animation'
+import {Store} from '@ngrx/store'
+import {peoplePageSelectors} from '../store/people-page/people-page.selectors'
+import {peoplePageActions} from '../store/people-page/people-page.actions'
 
 
 @Component({
@@ -18,7 +18,7 @@ export class PeoplePageComponent implements OnInit, OnDestroy {
     isLoading = this.store.selectSignal(peoplePageSelectors.selectIsListLoading)
 
     ngOnInit() {
-        this.getPeople();
+        this.getPeople()
     }
 
     ngOnDestroy() {
@@ -29,5 +29,5 @@ export class PeoplePageComponent implements OnInit, OnDestroy {
         this.store.dispatch(peoplePageActions.loadList())
     }
 
-    protected readonly peoplePageSelectors = peoplePageSelectors;
+    protected readonly peoplePageSelectors = peoplePageSelectors
 }

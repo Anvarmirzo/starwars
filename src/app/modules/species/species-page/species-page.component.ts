@@ -1,8 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {ApiService} from '../../../services/api.service';
-import {signal} from '@angular/core';
-import {ISpecies} from '../../../models/species';
-import {listAnimation} from '../../../animations/list-animation';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core'
+import {listAnimation} from '../../../animations/list-animation'
+import {Store} from '@ngrx/store';
+import {speciesPageSelectors} from '../store/species-page/species-page.selectors';
+import {speciesPageActions} from '../store/species-page/species-page.actions';
 
 
 @Component({
@@ -11,23 +11,23 @@ import {listAnimation} from '../../../animations/list-animation';
     styleUrls: ['./species-page.component.scss'],
     animations: [listAnimation]
 })
-export class SpeciesPageComponent implements OnInit {
-    list = signal<ISpecies[]>([])
-    isLoading = signal(true);
-    next = signal<string | null>(null)
-    api = inject(ApiService)
+export class SpeciesPageComponent implements OnInit, OnDestroy {
+    store = inject(Store)
+    list = this.store.selectSignal(speciesPageSelectors.selectList)
+    pagination = this.store.selectSignal(speciesPageSelectors.selectPagination)
+    isLoading = this.store.selectSignal(speciesPageSelectors.selectIsListLoading)
 
     ngOnInit() {
         this.getSpecies()
     }
 
-    getSpecies() {
-        this.isLoading.set(true)
-        this.api.getSpecies().subscribe(next => {
-            this.next.set(next.next)
-            this.list.set([...this.list(), ...next.results])
-            this.isLoading.set(false)
-        })
+    ngOnDestroy() {
+        this.store.dispatch(speciesPageActions.resetPage())
     }
 
+    getSpecies() {
+        this.store.dispatch(speciesPageActions.loadList())
+    }
+
+    protected readonly speciesPageSelectors = speciesPageSelectors;
 }

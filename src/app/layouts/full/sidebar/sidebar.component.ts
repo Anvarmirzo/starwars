@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {navItems} from './sidebar-data';
-import {BrandingComponent} from './branding.component';
-import {AppNavItemComponent} from './nav-item/nav-item.component';
-import {NgForOf} from '@angular/common';
-import {MaterialModule} from '../../../modules/material/material.module';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core'
+import {navItems} from './sidebar-data'
+import {BrandingComponent} from './branding.component'
+import {AppNavItemComponent} from './nav-item/nav-item.component'
+import {NgForOf} from '@angular/common'
+import {MaterialModule} from '../../../modules/material/material.module'
 
 @Component({
     selector: 'app-sidebar',
@@ -19,7 +19,7 @@ import {MaterialModule} from '../../../modules/material/material.module';
     encapsulation: ViewEncapsulation.None,
 })
 export class SidebarComponent implements OnInit {
-    navItems = navItems;
+    navItems = navItems
 
     ngOnInit(): void {
     }

@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
-import {VehiclesPageComponent} from './vehicles-page/vehicles-page.component';
+import { Routes } from '@angular/router'
+import {VehiclesPageComponent} from './vehicles-page/vehicles-page.component'
 
 export const PeopleRoutes: Routes = [
   {
@@ -9,4 +9,4 @@ export const PeopleRoutes: Routes = [
       title: 'Vehicles',
     },
   },
-];
+]

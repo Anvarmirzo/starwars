@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
-import {HomePageComponent} from './home-page/home-page.component';
+import { Routes } from '@angular/router'
+import {HomePageComponent} from './home-page/home-page.component'
 
 export const HomeRoutes: Routes = [
   {
@@ -9,4 +9,4 @@ export const HomeRoutes: Routes = [
       title: 'Home',
     },
   },
-];
+]

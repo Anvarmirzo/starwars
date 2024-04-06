@@ -5,11 +5,11 @@ import {map, of, switchMap, takeUntil} from 'rxjs'
 import {catchError} from 'rxjs/operators'
 import {Actions, concatLatestFrom, createEffect, ofType} from '@ngrx/effects'
 import {ApiService} from '../../../../services/api.service'
-import {filmsPageActions} from './films-page.actions'
-import {filmsPageSelectors} from './films-page.selectors'
+import {speciesPageActions} from './species-page.actions'
+import {speciesPageSelectors} from './species-page.selectors'
 
 @Injectable()
-export class FilmsPageEffects {
+export class SpeciesPageEffects {
     constructor(
         private actions$: Actions,
         private store: Store,
@@ -19,17 +19,17 @@ export class FilmsPageEffects {
 
     loadList$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(filmsPageActions.loadList),
-            concatLatestFrom(() => this.store.select(filmsPageSelectors.selectPagination)),
+            ofType(speciesPageActions.loadList),
+            concatLatestFrom(() => this.store.select(speciesPageSelectors.selectPagination)),
             switchMap(([,pagination]) =>
-                this.apiService.getFilms(pagination?.next)
+                this.apiService.getSpecies(pagination?.next)
                     .pipe(
-                        map(res => filmsPageActions.loadListSuccess({data: res})),
+                        map(res => speciesPageActions.loadListSuccess({data: res})),
                         catchError((err) => {
                             console.error(err)
-                            return of(filmsPageActions.loadListFailure())
+                            return of(speciesPageActions.loadListFailure())
                         }),
-                        takeUntil(this.actions$.pipe(ofType(filmsPageActions.resetPage))),
+                        takeUntil(this.actions$.pipe(ofType(speciesPageActions.resetPage))),
                     )
             ),
         )

@@ -1,4 +1,4 @@
-import {Routes} from '@angular/router';
+import {Routes} from '@angular/router'
 
 import {AppSideLoginComponent} from './login/login.component';
 import {NotUserGuard} from '../../guards/not-user.guard';

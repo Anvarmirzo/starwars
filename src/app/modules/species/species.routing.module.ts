@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
-import {SpeciesPageComponent} from './species-page/species-page.component';
+import { Routes } from '@angular/router'
+import {SpeciesPageComponent} from './species-page/species-page.component'
 
 export const SpeciesRoutes: Routes = [
   {
@@ -9,4 +9,4 @@ export const SpeciesRoutes: Routes = [
       title: 'Species',
     },
   },
-];
+]
