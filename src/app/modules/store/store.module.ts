@@ -7,6 +7,8 @@ import {FilmsPageEffects} from '../films/store/films-page/films-page.effects';
 import {provideStoreDevtools} from '@ngrx/store-devtools';
 import {peoplePageReducer} from '../people/store/people-page/people-page.reducer';
 import {PeoplePageEffects} from '../people/store/people-page/people-page.effects';
+import {planetsPageReducer} from '../planets/store/planets-page/planets-page.reducer';
+import {PlanetsPageEffects} from '../planets/store/planets-page/planets-page.effects';
 
 
 @NgModule({
@@ -14,9 +16,11 @@ import {PeoplePageEffects} from '../people/store/people-page/people-page.effects
         provideStore(),
         provideState({name: 'filmsPage', reducer: filmsPageReducer}),
         provideState({name: 'peoplePage', reducer: peoplePageReducer}),
+        provideState({name: 'planetsPage', reducer: planetsPageReducer}),
 
         provideEffects(FilmsPageEffects),
         provideEffects(PeoplePageEffects),
+        provideEffects(PlanetsPageEffects),
 
         provideStoreDevtools({
             maxAge: 25, // Retains last 25 states

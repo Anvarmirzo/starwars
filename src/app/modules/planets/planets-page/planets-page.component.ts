@@ -1,8 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {ApiService} from '../../../services/api.service';
-import {signal} from '@angular/core';
-import {IPlanets} from '../../../models/planets';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {listAnimation} from '../../../animations/list-animation';
+import {planetsPageSelectors} from '../store/planets-page/planets-page.selectors';
+import {Store} from '@ngrx/store';
+import {planetsPageActions} from '../store/planets-page/planets-page.actions';
 
 
 @Component({
@@ -11,22 +11,23 @@ import {listAnimation} from '../../../animations/list-animation';
     styleUrls: ['./planets-page.component.scss'],
     animations: [listAnimation]
 })
-export class PlanetsPageComponent implements OnInit {
-    list = signal<IPlanets[]>([])
-    isLoading = signal(true)
-    next = signal<string | null>(null)
-    api = inject(ApiService)
+export class PlanetsPageComponent implements OnInit, OnDestroy {
+    store = inject(Store)
+    list = this.store.selectSignal(planetsPageSelectors.selectList)
+    pagination = this.store.selectSignal(planetsPageSelectors.selectPagination)
+    isLoading = this.store.selectSignal(planetsPageSelectors.selectIsListLoading)
 
     ngOnInit() {
         this.getPlanets()
     }
 
-    getPlanets() {
-        this.isLoading.set(true)
-        this.api.getPlanets(this.next()).subscribe(next => {
-            this.next.set(next.next)
-            this.list.set([...this.list(), ...next.results])
-            this.isLoading.set(false)
-        })
+    ngOnDestroy() {
+        this.store.dispatch(planetsPageActions.resetPage())
     }
+
+    getPlanets() {
+        this.store.dispatch(planetsPageActions.loadList())
+    }
+
+    protected readonly planetsPageSelectors = planetsPageSelectors;
 }
