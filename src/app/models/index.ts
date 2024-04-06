@@ -4,3 +4,10 @@ export interface IResponse<T> {
     previous: string | null
     results: T[]
 }
+
+export enum eStatus {
+    Pending = 'pending',
+    Loading = 'loading',
+    Error = 'error',
+    Success = 'success',
+}

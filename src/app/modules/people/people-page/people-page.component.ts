@@ -1,8 +1,8 @@
-import {Component, HostListener, inject, OnInit} from '@angular/core';
-import {ApiService} from '../../../services/api.service';
-import {IPeople} from '../../../models/people';
-import {signal} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {listAnimation} from '../../../animations/list-animation';
+import {Store} from '@ngrx/store';
+import {peoplePageSelectors} from '../store/people-page/people-page.selectors';
+import {peoplePageActions} from '../store/people-page/people-page.actions';
 
 
 @Component({
@@ -11,23 +11,23 @@ import {listAnimation} from '../../../animations/list-animation';
     styleUrls: ['./people-page.component.scss'],
     animations: [listAnimation]
 })
-export class PeoplePageComponent implements OnInit {
-    isLoading = signal(true)
-    list = signal<IPeople[]>([])
-    next = signal<string | null>(null)
-    api = inject(ApiService)
+export class PeoplePageComponent implements OnInit, OnDestroy {
+    store = inject(Store)
+    list = this.store.selectSignal(peoplePageSelectors.selectList)
+    pagination = this.store.selectSignal(peoplePageSelectors.selectPagination)
+    isLoading = this.store.selectSignal(peoplePageSelectors.selectIsListLoading)
 
     ngOnInit() {
         this.getPeople();
     }
 
-    getPeople() {
-        this.isLoading.set(true)
-        this.api.getPeople(this.next()).subscribe(next => {
-            this.next.set(next.next)
-            this.list.set([...this.list(), ...next.results])
-            this.isLoading.set(false)
-        })
+    ngOnDestroy() {
+        this.store.dispatch(peoplePageActions.resetPage())
     }
 
+    getPeople() {
+        this.store.dispatch(peoplePageActions.loadList())
+    }
+
+    protected readonly peoplePageSelectors = peoplePageSelectors;
 }

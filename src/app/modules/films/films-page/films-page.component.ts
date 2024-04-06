@@ -1,8 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {ApiService} from '../../../services/api.service';
-import {signal} from '@angular/core';
-import {IFilms} from '../../../models/films';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {listAnimation} from '../../../animations/list-animation';
+import {Store} from '@ngrx/store';
+import {filmsPageActions} from '../store/films-page/films-page.actions';
+import {filmsPageSelectors} from '../store/films-page/films-page.selectors';
 
 
 @Component({
@@ -11,22 +11,23 @@ import {listAnimation} from '../../../animations/list-animation';
     styleUrls: ['./films-page.component.scss'],
     animations: [listAnimation]
 })
-export class FilmsPageComponent implements OnInit {
-    list = signal<IFilms[]>([])
-    isLoading = signal(true)
-    next = signal<string | null>(null)
-    api = inject(ApiService)
+export class FilmsPageComponent implements OnInit, OnDestroy {
+    store = inject(Store)
+    list = this.store.selectSignal(filmsPageSelectors.selectList)
+    pagination = this.store.selectSignal(filmsPageSelectors.selectPagination)
+    isLoading =  this.store.selectSignal(filmsPageSelectors.selectIsListLoading)
 
     ngOnInit() {
         this.getFilms()
     }
 
-    getFilms() {
-        this.isLoading.set(true)
-        this.api.getFilms(this.next()).subscribe(next => {
-            this.next.set(next.next)
-            this.list.set([...this.list(), ...next.results])
-            this.isLoading.set(false)
-        })
+    ngOnDestroy() {
+        this.store.dispatch(filmsPageActions.resetPage())
     }
+
+    getFilms() {
+        this.store.dispatch(filmsPageActions.loadList())
+    }
+
+    protected readonly filmsPageSelectors = filmsPageSelectors;
 }
