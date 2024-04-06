@@ -1,8 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core'
-import {ApiService} from '../../../services/api.service'
-import {signal} from '@angular/core'
-import {IVehicles} from '../../../models/vehicles'
+import {Component, inject, OnDestroy, OnInit} from '@angular/core'
 import {listAnimation} from '../../../animations/list-animation'
+import {Store} from '@ngrx/store';
+import {vehiclesPageSelectors} from '../store/vehicles-page/vehicles-page.selectors';
+import {vehiclesPageActions} from '../store/vehicles-page/vehicles-page.actions';
 
 
 @Component({
@@ -11,23 +11,23 @@ import {listAnimation} from '../../../animations/list-animation'
     styleUrls: ['./vehicles-page.component.scss'],
     animations: [listAnimation]
 })
-export class VehiclesPageComponent implements OnInit {
-    list = signal<IVehicles[]>([])
-    isLoading = signal(true)
-    next = signal<string | null>(null)
-    api = inject(ApiService)
+export class VehiclesPageComponent implements OnInit, OnDestroy {
+    store = inject(Store)
+    list = this.store.selectSignal(vehiclesPageSelectors.selectList)
+    pagination = this.store.selectSignal(vehiclesPageSelectors.selectPagination)
+    isLoading = this.store.selectSignal(vehiclesPageSelectors.selectIsListLoading)
 
     ngOnInit() {
         this.getVehicles()
     }
 
-    getVehicles() {
-        this.isLoading.set(true)
-        this.api.getVehicles().subscribe(next => {
-            this.next.set(next.next)
-            this.list.set([...this.list(), ...next.results])
-            this.isLoading.set(false)
-        })
+    ngOnDestroy() {
+        this.store.dispatch(vehiclesPageActions.resetPage())
     }
 
+    getVehicles() {
+        this.store.dispatch(vehiclesPageActions.loadList())
+    }
+
+    protected readonly vehiclesPageSelectors = vehiclesPageSelectors;
 }

@@ -13,6 +13,8 @@ import {SpeciesPageEffects} from '../species/store/species-page/species-page.eff
 import {speciesPageReducer} from '../species/store/species-page/species-page.reducer'
 import {starshipsPageReducer} from '../starships/store/starships-page/starships-page.reducer';
 import {StarshipsPageEffects} from '../starships/store/starships-page/starships-page.effects';
+import {vehiclesPageReducer} from '../vehicles/store/vehicles-page/vehicles-page.reducer';
+import {VehiclesPageEffects} from '../vehicles/store/vehicles-page/vehicles-page.effects';
 
 
 @NgModule({
@@ -23,12 +25,14 @@ import {StarshipsPageEffects} from '../starships/store/starships-page/starships-
         provideState({name: 'planetsPage', reducer: planetsPageReducer}),
         provideState({name: 'speciesPage', reducer: speciesPageReducer}),
         provideState({name: 'starshipsPage', reducer: starshipsPageReducer}),
+        provideState({name: 'vehiclesPage', reducer: vehiclesPageReducer}),
 
         provideEffects(FilmsPageEffects),
         provideEffects(PeoplePageEffects),
         provideEffects(PlanetsPageEffects),
         provideEffects(SpeciesPageEffects),
         provideEffects(StarshipsPageEffects),
+        provideEffects(VehiclesPageEffects),
 
         provideStoreDevtools({
             maxAge: 25, // Retains last 25 states
